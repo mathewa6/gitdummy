@@ -164,13 +164,13 @@ for repo in repos:
                     print("PRIVATE COMMIT MESSAGE: "+private_commit_message)
                     dummyfile = repo['dummy_repo_data'] + os.path.sep + commit['filename'][:120] + repo['dummy_ext']
                     dummyfile = open(dummyfile, 'w+')
-                    dummyfile.write(repo['dummy_code'])
+                    dummyfile.write("debugPrint(\"{}\")".format(commit['message'].replace("@","[at]")))
                     dummyfile.close()
                     subprocess.call([
                         'git',
                         'add',
                         '--',
-                        commit['filename']+repo['dummy_ext']
+                        commit['filename'][:120]+repo['dummy_ext']
                     ])
                     dotgitdummy = open(repo['dummy_repo'] + os.path.sep + '.gitdummy', 'w+')
                     dotgitdummy.write(commit['date'])
