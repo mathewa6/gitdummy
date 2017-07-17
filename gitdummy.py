@@ -186,7 +186,7 @@ for repo in repos:
                         'git',
                         'commit',
                         '-m',
-                        private_commit_message,
+                        commit['message'].replace("@","[at]"),
                         '--date',
                         commit['date']
                     ])
